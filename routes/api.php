@@ -1,9 +1,8 @@
 <?php
 
-use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,8 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function () {
-    return response()->json([
-        "success" => "true"
-    ], 201);
-});
+Route::post('/register', 'App\Http\Controllers\RegisterController@register');

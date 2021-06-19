@@ -44,4 +44,14 @@ class UserFactory extends Factory
             ];
         });
     }
+
+
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'roles' => 'user,admin',
+            ];
+        });
+    }
 }
