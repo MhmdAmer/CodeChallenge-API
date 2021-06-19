@@ -17,4 +17,12 @@ class InputValidationHelper
             "c_password" => 'required|same:password',
         ]);
     }
+
+    public function validateUserLogin($request)
+    {
+        return Validator::make($request, [
+            "email" => "required|email",
+            "password" => "required"
+        ]);
+    }
 }

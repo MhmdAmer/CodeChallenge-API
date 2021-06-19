@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 
 namespace App\Http\Controllers;
 
+use App\Helpers\InputValidationHelper;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,11 @@ class AuthController extends Controller
 
     public function login()
     {
+        $input  =  new InputValidationHelper();
+
         $credentials = request(['email', 'password']);
+        if ($input->validateUserLogin($credentials)->fails())
+            return response()->json(["Error" => "Missing Parameters!"], 400);
 
         if (!$token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
