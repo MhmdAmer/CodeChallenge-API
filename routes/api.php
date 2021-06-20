@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,15 +21,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', 'App\Http\Controllers\RegisterController@register');
-Route::post('login', 'App\Http\Controllers\AuthController@login');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('login', [AuthController::class, "login"]);
 Route::group([
 
     'middleware' => 'auth',
 
 ], function () {
 
-
-    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
-    Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
+    Route::get('customers', [CustomerController::class, "getCustomers"]);
+    Route::get('average', [CustomerController::class, "getAverageRegistrations"]);
+    Route::post('logout', [AuthController::class, "logout"]);
+    Route::post('refresh', [AuthController::class, "refresh"]);
 });
