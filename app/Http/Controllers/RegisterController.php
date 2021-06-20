@@ -10,6 +10,7 @@ use App\Helpers\InputValidationHelper;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class RegisterController extends Controller
 {
 
@@ -23,6 +24,11 @@ class RegisterController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        $user->sendEmailVerificationNotification();
+
+
+
+
 
         return response()->json([
             "data" => $user
