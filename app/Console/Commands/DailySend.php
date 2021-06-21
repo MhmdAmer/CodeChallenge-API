@@ -41,8 +41,8 @@ class DailySend extends Command
     public function handle()
     {
 
-        Mail::raw('Daily Registrations', function ($message) {
-            $message->from('mohamad.h.aamer@gmail.com', DB::table('users')->where('roles', 'user')->where('created_at', '>', Carbon::now()->subDay())->count());
+        Mail::raw(DB::table('users')->where('roles', 'user')->where('created_at', '>', Carbon::now()->subDay())->count(), function ($message) {
+            $message->from('mohamad.h.aamer@gmail.com', "Daily Registration Summary");
             $message->to('mohamadamer303@gmail.com');
         });
         $this->info('Successfully sent daily quote to everyone.');
