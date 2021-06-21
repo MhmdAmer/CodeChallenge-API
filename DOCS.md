@@ -5,8 +5,8 @@
 | `composer install`     | installs pckages                                                                           |
 | `php artisan migrate` | migrate Models to Database |
 | `php artisan serve`      | starts server                                 |
-| `php artisan auote:daily | sends daily registration to specific emaily|
-| php artisan migrate:install | initialize migrations folder|
+| `php artisan quote:daily | sends daily registration to specific emaily|
+| php artisan migrate:install | initialize migrations folder and database|
 
 
 ### List of routes
@@ -20,6 +20,11 @@
 | `POST`      | `/register`  | register to db|
 | `POST`      | `/logout`    | logout of the site|
 
+## To Run Project localy
+`composer install`
+`php artisan migrate:install`
+`php artisan migrate`
+`php artisan serve`
 
 
 ## Run the service locally
