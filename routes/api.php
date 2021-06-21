@@ -33,5 +33,4 @@ Route::group([
     Route::get('customers', [CustomerController::class, "getCustomers"]);
     Route::get('average', [CustomerController::class, "getAverageRegistrations"]);
     Route::post('logout', [AuthController::class, "logout"]);
-    Route::post('refresh', [AuthController::class, "refresh"]);
 });
