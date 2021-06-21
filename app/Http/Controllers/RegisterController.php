@@ -29,7 +29,7 @@ class RegisterController extends Controller
             $user->sendEmailVerificationNotification();
         } catch (\Throwable $th) {
             return response()->json([
-                "message" => "Email Already Exists"
+                "message" => $th
             ], 401);
         }
 
