@@ -1,3 +1,6 @@
+#in .env put your Database credentials and mail info , and mailgun doesn't allow to send any one email unless his/her email is in Authorized Emails
+
+
 # List of existing commands
 
 | Command          | Description                                                                                  |
