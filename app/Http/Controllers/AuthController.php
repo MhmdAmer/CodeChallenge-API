@@ -19,10 +19,14 @@ class AuthController extends Controller
 
         $credentials = request(['email', 'password']);
         if ($input->validateUserLogin($credentials)->fails())
-            return response()->json(["Error" => "Missing Parameters!"], 400);
+            return response()->json(["message" => "Missing Parameters!"], 400);
 
         if (!$token = Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Wrong credentials'], 401);
+        }
+        if (Auth::user()->roles === 'user') {
+            return response()->json(["message" => "Unauthorized"], 401);
+            $this->logout();
         }
 
         return $this->respondWithToken($token);

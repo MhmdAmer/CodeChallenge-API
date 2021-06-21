@@ -23,15 +23,23 @@ class RegisterController extends Controller
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $user->sendEmailVerificationNotification();
+
+        try {
+            $user = User::create($input);
+            $user->sendEmailVerificationNotification();
+        } catch (\Throwable $th) {
+            return response()->json([
+                "message" => "Email Already Exists"
+            ], 401);
+        }
+
 
 
 
 
 
         return response()->json([
-            "data" => $user
+            "data" => "success"
         ], 201);
     }
 }

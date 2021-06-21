@@ -14,7 +14,7 @@ class InputValidationHelper
             "name" => 'required',
             "email" => 'required|email',
             "password" => 'required',
-            "c_password" => 'required|same:password',
+
         ]);
     }
 
