@@ -8,6 +8,8 @@
 | `php artisan quote:daily | sends daily registration to specific emaily|
 | php artisan migrate:install | initialize migrations folder and database|
 
+### To access Admin auth in database change one of users roles to admin there is no other way
+
 
 ### List of routes
 
